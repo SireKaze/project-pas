@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Tracking Simulation</title>
+<link rel="stylesheet" href="/assets/css/output.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <style>
+    #map { height: 100vh; }
+    .leaflet-container { background: #f8f9fa; }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <div id="map" class="relative"></div>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+      // Initialize the map
+      const map = L.map('map').setView([-6.525, 106.97], 13); // Adjust coordinates to center the map
+
+      // Add a tile layer (using OpenStreetMap as an example)
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(map);
+
+      // Add the provided map image as an overlay
+      const imageUrl = 'Group 123.png';
+      const imageBounds = [[-6.5955, 106.9067], [-6.4992, 107.0000]]; // Define the bounds of the image overlay
+      L.imageOverlay(imageUrl, imageBounds).addTo(map);
+
+      // Define the current location coordinates
+      const currentLocation = [-6.493333, 107.008333];
+
+      // Define the car's initial position
+      const carInitialPosition = [-6.3594, 107.0883]; // 6°21'36.1"S 107°05'28.5"E
+
+      // Generate custom path
+      const path = Array.from({ length: 7200 }, (_, i) => [
+        
+        carInitialPosition[0] + (currentLocation[0] - carInitialPosition[0]) * i / 7199,
+        carInitialPosition[1] + (currentLocation[1] - carInitialPosition[1]) * i / 7199,
+      ]);
+
+
+      // Draw the path on the map
+      const polyline = L.polyline(path, { color: 'blue' }).addTo(map);
+      map.fitBounds(polyline.getBounds());
+
+      // Car icon
+      const carIcon = L.icon({
+        iconUrl: '/assets/image/car.png', // Use a car icon URL or local file
+        iconSize: [38, 38], // size of the icon
+      });
+
+      // Add a car marker
+      const carMarker = L.marker([-6.525, 106.97], { icon: carIcon }).addTo(map).bindPopup('Mira'); // Add Mira name pop up
+
+      // Simulate car movement along the path
+      let index = 0;
+      function moveCar() {
+        carMarker.setLatLng(path[index]);
+        index++;
+        if (index >= path.length) {
+          alert("Car arrive in your location");
+          clearInterval(intervalId); // Stop the interval
+        }
+      }
+
+      // Move car every 33.33 ms (30 fps) for 12 minutes
+      let intervalId = setInterval(moveCar, 33.33); 
+      
+      // Add a marker for the current location
+      L.marker(currentLocation).addTo(map).bindPopup('Your current location');
+    });
+  </script>
+</body>
+</html>
+

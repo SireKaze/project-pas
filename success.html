@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penyewaan Berhasil</title>
+    <link rel="stylesheet" href="/assets/css/output.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <style>
+        #map { height: 450px; }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="bg-white p-6 rounded-lg shadow-lg text-center w-[1057px] mx-auto">
+        <div class="absolute top-0 left-0 m-4">
+            <a href="/payment-laferrari.html">
+                <button onclick="goBack()" class="text-gray-600 hover:text-gray-800">
+                    <svg class="w-6 h-6 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+            </a>
+        </div>
+        <h1 class="text-3xl font-semibold mb-4">Penyewaan berhasil!</h1>
+        <p class="text-gray-700 mb-4">Pengemudi dalam perjalanan menuju lokasimu</p>
+        <div id="map" class="w-full max-w-screen-lg mx-auto rounded-lg shadow-lg"></div>
+        <div class="mt-4">
+            <button onclick="goToHome()" class="bg-yellow-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-yellow-600">Kembali ke beranda</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectedLocation = localStorage.getItem('selectedLocation');
+
+            if (selectedLocation) {
+                const map = L.map('map').setView(getCoordinates(selectedLocation), 11);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; OpenStreetMap contributors'
+                }).addTo(map);
+
+                L.marker(getCoordinates(selectedLocation)).addTo(map)
+                    .bindPopup(selectedLocation)
+                    .openPopup();
+            } else {
+                alert('Tidak ada lokasi yang dipilih.'); // Handle jika tidak ada lokasi yang dipilih
+                window.location.href = 'index.html'; // Ganti ini dengan URL halaman beranda yang benar
+            }
+        });
+
+        function getCoordinates(location) {
+            const locations = {
+                Jakarta: [-6.2088, 106.8456],
+                Bandung: [-6.9175, 107.6191],
+                Surabaya: [-7.2575, 112.7521],
+                Yogyakarta: [-7.8012, 110.3648],
+                Bekasi: [-6.2346, 106.9896],
+                Bogor: [-6.5944, 106.7892],
+                Karawang: [-6.3069, 107.3376],
+                Sukabumi: [-6.9181, 106.9263]
+                // Tambahkan lokasi lainnya sesuai kebutuhan
+            };
+
+            return locations[location];
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function goToHome() {
+            window.location.href = 'index.html'; // Ganti ini dengan URL halaman beranda yang benar
+        }
+    </script>
+</body>
+</html>

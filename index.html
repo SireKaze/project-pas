@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RentFR</title>
+    <link rel="stylesheet" href="assets/css/output.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+</head>
+<style>
+    .testimonial-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .swiper-slide-active .testimonial-card {
+      transform: scale(1.1);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .swiper {
+      padding: 20px 0;
+    }
+  </style>
+<body class="bg-gray-100">
+    <div class="w-[90%] mx-auto p-4 bg-gray-100">
+        <header class="flex justify-between items-center mb-8">
+            <div class="flex items-center">
+                <div class="logo mr-4" onclick="openProfileMenu()">
+                    <img src="/assets/image/logo-nav.png" alt="Logo" class="w-12 h-12 cursor-pointer">
+                </div>
+                <div class="profile-content ml-4 hidden" id="profileMenu">
+                    <button class="bg-gray-200 text-gray-700 px-3 py-1 rounded hover:bg-gray-300">Account</button>
+                </div>
+            </div>
+            <script>
+                AOS.init();
+                function openProfileMenu() {
+                    const profileMenu = document.getElementById('profileMenu');
+                    profileMenu.classList.toggle('hidden');
+                }
+            </script>
+            <div class="flex-grow mr-4 flex justify-end items-center">
+                <a href="/loginv2.html" class=" text-black font-semibold px-4 py-2 rounded mr-2 border-c1 border-2 transition duration-300 hover:border-c1 hover:bg-c1">Login</a>
+                <a href="/registerv2.html" class=" text-black font-semibold px-4 py-2 rounded mr-2 border-c1 border-2 transition duration-300 hover:border-c1 hover:bg-c1">Sign Up</a>
+                <a href="/location-tracking.html" class=" text-black font-semibold px-4 py-2 rounded mr-2 border-c1 border-2 transition duration-300 hover:border-c1 hover:bg-c1">Track Location</a>
+            </div>
+            <script>
+// Arrays of first names and last names for random generation
+const firstNames = ['Alice', 'Bob', 'Charlie', 'David', 'Emma', 'Frank', 'Grace', 'Henry'];
+const lastNames = ['Smith', 'Johnson', 'Williams', 'Jones', 'Brown', 'Davis', 'Miller', 'Wilson'];
+
+// Function to generate a random name
+function getRandomName() {
+  const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];
+  const randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+  return `${randomFirstName} ${randomLastName}`;
+}
+
+// Generate a random name
+const randomName = getRandomName();a
+
+// Output the random name dynamically
+document.write(`<span class="text-gray-700">Hello, ${randomName}</span>`);
+
+            </script>
+        </header>
+        <main>
+            <div class="location mb-8" data-aos="fade-up">
+                <p class="text-xl">Your location : <strong id="userLocation">Not found</strong></p>
+                <script>
+                  navigator.geolocation.getCurrentPosition(function(position) {
+                    fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}&localityLanguage=en`)
+                      .then(response => response.json())
+                      .then(data => {
+                        document.getElementById('userLocation').textContent = `${data.city}, ${data.countryName}`;
+                      })
+                      .catch(err => console.error(err));
+                  });
+                </script>
+                <p class="text-lg">Choose your ideal car</p>
+            </div>
+            <div class="car-selection flex justify-center items-center gap-8" data-aos="zoom-in">
+                <img src="/assets/image/Home/FRrental.png" alt="BMW" class="w-auto h-auto transition-transform transform hover:scale-110">
+            </div>
+        </main>
+    </div>
+    <div class="flex justify-center space-x-8 mb-8 w-auto mx-auto mt-8">
+        <img src="/assets/image/Home/logo-home.png" alt="logo" class="h-auto">
+    </div>
+    <div class="flex justify-between items-center mx-[100px] mb-8">
+        <p class="text-3xl font-bold">Popular rent</p>
+        <button>
+            <a href="/categories.html" class="text-xl font-bold hover:text-yellow-300">See all</a>
+        </button>
+    </div>
+    <div class="flex justify-center items-center space-x-8 mb-8 w-full mx-auto">
+        <div class="relative flex justify-center items-center">
+            <img src="/assets/image/Car-card/Card-puro.png" alt="" class="w-full h-full">
+            <button class="absolute bottom-0 right-0 p-1">
+                <img src="/assets/image//Home/arrow.png" alt="Arrow" class="transition duration-300 ease-in-out transform hover:scale-110 hover:rotate-180">
+            </button>
+        </div>
+        <div class="relative flex justify-center items-center">
+            <img src="/assets/image/Car-card/Card-porto.png" alt="" class="w-full h-full">
+            <button class="absolute bottom-0 right-0 p-1">
+                <img src="/assets/image//Home/arrow.png" alt="Arrow" class="transition duration-300 ease-in-out transform hover:scale-110 hover:rotate-180">
+            </button>
+        </div>
+        <div class="relative flex justify-center items-center">
+            <img src="/assets/image/Car-card/Card-roma.png" alt="" class="w-full h-full">
+            <button class="absolute bottom-0 right-0 p-1">
+                <img src="/assets/image//Home/arrow.png" alt="Arrow" class="transition duration-300 ease-in-out transform hover:scale-110 hover:rotate-180">
+            </button>
+        </div>
+        <div class="relative flex justify-center items-center">
+            <img src="/assets/image/Car-card/Card-sf90.png" alt="" class="w-full h-full">
+            <button class="absolute bottom-0 right-0 p-1">
+                <img src="/assets/image/Home/arrow.png" alt="Arrow" class="transition duration-300 ease-in-out transform hover:scale-110 hover:rotate-180">
+            </button>
+        </div>
+    </div>
+    
+   
+  </div>
+    <div class="container mx-auto text-center py-10 px-4 md:px-0">
+        <h1 class="text-3xl font-bold mb-12">Fitur dari penyewaan</h1>
+        
+        <div class="mb-12 flex flex-col md:flex-row items-center md:items-start justify-center">
+            <img src="/assets/image/Home/Carrepair.png" alt="Gratis perbaikan" class="mb-4 -mr-[100px] md:mb-0 md:mr-8 w-20 md:w-[335px] h-auto" data-aos="fade-up">
+            <div class="text-left">
+                <h2 class="text-3xl font-semibold mb-2">Gratis perbaikan</h2>
+                <ul class="list-none p-0 mt-4 text-2xl">
+                    <li class="mb-2">- Mesin</li>
+                    <li class="mb-2">- Ganti oli</li>
+                    <li class="mb-2">- Ban pecah</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="mb-12 flex flex-col md:flex-row items-center md:items-start justify-center">
+            <div class="text-left md:order-2">
+                <h2 class="text-3xl font-semibold mb-2">Mobil bersih</h2>
+                <ul class="list-none p-0 mt-4 text-2xl">
+                    <li class="mb-2">- Dengan polesan body</li>
+                    <li class="mb-2">- Menggunakan sabun berkualitas</li>
+                    <li class="mb-2">- Mobil bersih dan nyaman</li>
+                </ul>
+            </div>
+            <img src="/assets/image/Home/Carclean.png" alt="Mobil bersih" class="mb-4 md:mb-0 md:ml-8 w-30 md:w-[335px] h-auto" data-aos="fade-up">
+        </div>
+        
+        <div class="mb-12 flex flex-col md:flex-row items-center md:items-start justify-center">
+            <img src="/assets/image/Home/Speedometer.png" alt="Gratis pengisian bbm" class="mb-4 md:mb-0 md:mr-8 w-30 md:w-[235px] h-auto" data-aos="fade-up">
+            <div class="text-left">
+                <h2 class="text-3xl font-semibold mb-2">Gratis pengisian BBM</h2>
+                <ul class="list-none p-0 mt-4 text-2xl">
+                    <li class="mb-2">- Didukung layanan pertamina untuk kenyamanan dan keamanan</li>
+                    <li class="mb-2">- Menggunakan bahan bakar berkualitas</li>
+                    <li class="mb-2">- Gratis pengisian BBM</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="mb-12 flex flex-col md:flex-row items-center md:items-start justify-center" data-aos="fade-up">
+            <div class="text-left md:order-2">
+                <h2 class="text-3xl font-semibold mb-2">Pengantaran tepat waktu</h2>
+                <ul class="list-none p-0 mt-4 text-2xl">
+                    <li class="mb-2">- Mobil diantarkan sesuai estimasi</li>
+                    <li class="mb-2">- Layanan 24 jam</li>
+                    <li class="mb-2">- Pelayanan ramah</li>
+                </ul>
+            </div>
+            <img src="/assets/image/Home/Clock.png" alt="Pengantaran tepat waktu" class="mb-4 md:mb-0 md:ml-8 w-30 md:w-[335px] h-auto">
+        </div>
+  <div class="container">
+    <h1 class="text-3xl font-bold text-center mt-16 mb-[160px]">Testimoni dari Penyewaan</h1>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="testimonial-card bg-white p-6 rounded-lg shadow-lg w-80 mx-auto" data-aos="fade-up">
+            <div class="flex items-center mb-4">
+              <img src="/assets/image/Home/Women-profile.png" alt="Julina" class="w-12 h-12 rounded-full">
+              <div class="ml-4">
+                <h2 class="text-lg font-semibold">Julina</h2>
+                <div class="text-yellow-400 flex">
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                </div>
+              </div>
+            </div>
+            <p>Pengalaman menyewa mobil di sini luar biasa! Kendaraan selalu dalam kondisi prima dan sangat bersih. Stafnya juga ramah dan membantu. Saya sangat merekomendasikan rental ini kepada siapa pun yang mencari layanan berkualitas!</p>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial-card bg-white p-6 rounded-lg shadow-lg w-80 mx-auto" data-aos="fade-up">
+            <div class="flex items-center mb-4">
+              <img src="/assets/image/Home/Men-profile.png" alt="Kevin" class="w-12 h-12 rounded-full">
+              <div class="ml-4">
+                <h2 class="text-lg font-semibold">Kevin</h2>
+                <div class="text-yellow-400 flex">
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                </div>
+              </div>
+            </div>
+            <p>Pelayanan yang saya terima sungguh luar biasa! Mobil dalam kondisi sempurna, bersih, dan nyaman. Proses penyewaan juga sangat mudah dan cepat. Sangat puas dengan layanan yang diberikan dan pasti akan kembali lagi!</p>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial-card bg-white p-6 rounded-lg shadow-lg w-80 mx-auto" data-aos="fade-up">
+            <div class="flex items-center mb-4">
+              <img src="/assets/image/Home/Women-profile.png" alt="Maria" class="w-12 h-12 rounded-full">
+              <div class="ml-4">
+                <h2 class="text-lg font-semibold">Maria</h2>
+                <div class="text-yellow-400 flex">
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                </div>
+              </div>
+            </div>
+            <p>Mobil yang saya sewa sangat nyaman dan bersih. Proses pemesanan sangat mudah dan cepat. Staf sangat membantu dan ramah. Saya akan menyewa mobil di sini lagi tanpa ragu!</p>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial-card bg-white p-6 rounded-lg shadow-lg w-80 mx-auto" data-aos="fade-up">
+            <div class="flex items-center mb-4">
+              <img src="/assets/image/Home/Men-profile.png" alt="David" class="w-12 h-12 rounded-full">
+              <div class="ml-4">
+                <h2 class="text-lg font-semibold">David</h2>
+                <div class="text-yellow-400 flex">
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                </div>
+              </div>
+            </div>
+            <p>Pelayanan yang diberikan sangat memuaskan. Mobil dalam kondisi baik dan bersih. Saya sangat merekomendasikan layanan ini kepada teman dan keluarga. Sangat puas!</p>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial-card bg-white p-6 rounded-lg shadow-lg w-80 mx-auto" data-aos="fade-up">
+            <div class="flex items-center mb-4">
+              <img src="/assets/image/Home/Women-profile.png" alt="Lisa" class="w-12 h-12 rounded-full">
+              <div class="ml-4">
+                <h2 class="text-lg font-semibold">Lisa</h2>
+                <div class="text-yellow-400 flex">
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                </div>
+              </div>
+            </div>
+            <p>Proses penyewaan mobil sangat mudah dan cepat. Mobil yang saya sewa sangat bersih dan dalam kondisi baik. Staf sangat profesional dan ramah. Saya pasti akan kembali lagi!</p>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="testimonial-card bg-white p-6 rounded-lg shadow-lg w-80 mx-auto" data-aos="fade-up">
+            <div class="flex items-center mb-4">
+              <img src="/assets/image/Home/Men-profile.png" alt="Michael" class="w-12 h-12 rounded-full">
+              <div class="ml-4">
+                <h2 class="text-lg font-semibold">Michael</h2>
+                <div class="text-yellow-400 flex">
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                </div>
+              </div>
+            </div>
+            <p>Pengalaman menyewa mobil di sini sangat menyenangkan. Kendaraan dalam kondisi sangat baik dan bersih. Proses penyewaan sangat mudah dan cepat. Layanan yang sangat memuaskan!</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1,
+      spaceBetween: 30,
+      loop: true,
+      centeredSlides: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 40,
+        },
+      },
+    });
+  </script>
+
+  
+
+
+  </div>
+</div>
+</div>
+<footer class="bg-gray-800 text-white p-10">
+    <div class="w-[90%] mx-auto flex justify-between items-center">
+        <div class="flex flex-col">
+            <p class="text-sm mb-2">&copy; 2023 Car Rental. All rights reserved.</p>
+            <p><a href="https://www.google.com/maps/place/SMK+MADINATUL+QURAN" target="_blank">SMK MADINATUL QURAN</a></p>
+            <p>Email: info@carrental.com</p>
+            <p>Telepon: +62 123 4567 890</p>
+        </div>
+        <div class="flex flex-col gap-2">
+            <p>SHARE ON:</p>
+            <div class="flex space-x-4">
+                <a href="https://wa.me/1234567890" target="_blank">
+                    <div class="rounded-full bg-white p-2">
+                        <img src="/assets/image/Home/Whatsapp.png" alt="WhatsApp" class="w-6 h-6">
+                    </div>
+                </a>
+                <a href="https://www.google.com" target="_blank">
+                    <div class="rounded-full bg-white p-2">
+                        <img src="/assets/image/Home/Google.png" alt="Google" class="w-6 h-6">
+                    </div>
+                </a>
+                <a href="https://twitter.com" target="_blank">
+                    <div class="rounded-full bg-white p-2">
+                        <img src="/assets/image/Home/Twitter.png" alt="Twitter" class="w-6 h-6">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+</html>
+</body>
+
+

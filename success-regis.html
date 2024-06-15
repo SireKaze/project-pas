@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful</title>
+</head>
+
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const username = localStorage.getItem('username') || 'Guest';
+            document.write(`<span class="text-gray-700">Hello, ${username}</span>`);
+        });
+    </script>
+    <h1>Registration Successful</h1>
+    <p>Thank you for registering with RentFR.</p>
+    <!-- Other content as needed -->
+</body>
+
+</html>

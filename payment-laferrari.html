@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RentFR</title>
+    <link rel="stylesheet" href="/assets/css/output.css">
+</head>
+<body class="bg-gray-100">
+    <div class="max-w-7xl mx-auto p-4">
+        <div class="flex items-center space-x-4 text-gray-600">
+            <span>RentFR</span>
+            <span>&gt;</span>
+            <a href="/index.html" class="hover:underline">Home</a>
+            <span>&gt;</span>
+            <a href="/categories.html" class="hover:underline">See all</a>
+            <span>&gt;</span>
+            <a href="/spec-laferrari.html" class="hover:underline">Ferrari Laferrari</a>
+            <span>&gt;</span>
+            <span>Sewa</span>
+        </div>
+
+        <div class="mt-[40px]">
+            <h1 class="text-3xl font-semibold">Ferrari LaFerrari</h1>
+            <p class="text-gray-600">Disediakan oleh FRRental</p>
+            <div class="mt-6 lg:flex lg:space-x-6">
+                <div class="lg:w-1/2">
+                    <h2 class="text-xl font-semibold">Kebijakan rental</h2>
+                    <ul class="list-disc list-inside mt-2 text-gray-700">
+                        <li>Penggunaan dari 00:00 hingga 23:59 per hari</li>
+                        <li>Kembalikan bensin seperti semula</li>
+                        <li>Penuh ke penuh</li>
+                        <li>Layanan darurat 24 jam</li>
+                        <li>Customer Service FRRental 24 jam</li>
+                        <li>Asuransi mobil</li>
+                        <li>Bisa refund</li>
+                    </ul>
+                </div>
+
+                <div class="lg:w-1/2 mb-10 lg:mt-0">
+                    <form id="rentalForm" class="bg-white p-4 rounded-lg shadow">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700">Nama :</label>
+                            <input type="text" id="name" class="mt-1 p-2 border border-gray-300 rounded-lg w-full" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="countryCode" class="block text-gray-700">Kode Negara :</label>
+                            <select id="countryCode" class="mt-1 p-2 border border-gray-300 rounded-lg w-full" required>
+                                <option value="+62">Indonesia (+62)</option>
+                                <option value="+1">United States (+1)</option>
+                                <!-- Add more country codes here -->
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="ktp" class="block text-gray-700">No Telp :</label>
+                            <input type="text" id="ktp" class="mt-1 p-2 border border-gray-300 rounded-lg w-full" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="address" class="block text-gray-700">Lokasi pengiriman mobil :</label>
+                            <select id="address" class="mt-1 p-2 border border-gray-300 rounded-lg w-full" onchange="handleLocationChange(this)" required>
+                                <option value="">Pilih lokasi</option>
+                                <option value="Jakarta">Jakarta</option>
+                                <option value="Bandung">Bandung</option>
+                                <option value="Surabaya">Surabaya</option>
+                                <option value="Yogyakarta">Yogyakarta</option>
+                                <option value="Bekasi">Bekasi</option>
+                                <option value="Bogor">Bogor</option>
+                                <option value="Karawang">Karawang</option>
+                                <option value="Sukabumi">Sukabumi</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                            <input type="text" id="otherAddress" class="mt-1 p-2 border border-gray-300 rounded-lg w-full" placeholder="Masukkan lokasi lainnya">
+                        </div>
+                        <div class="mb-4">
+                            <label for="startDate" class="block text-gray-700">Durasi penyewaan</label>
+                            <div class="flex space-x-2">
+                                <input type="date" id="startDate" class="mt-1 p-2 border border-gray-300 rounded-lg w-full" required>
+                                <span class="self-center">—</span>
+                                <input type="date" id="endDate" class="mt-1 p-2 border border-gray-300 rounded-lg w-full" required>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg shadow mt-6">
+                            <h2 class="text-xl font-semibold">Detail harga</h2>
+                            <p class="mt-4 text-gray-700">Harga total</p>
+                            <p id="totalPrice" class="text-2xl font-bold text-gray-900">Rp.0</p>
+                        </div>
+                        <button type="button" class="mt-4 w-full bg-yellow-500 text-white font-semibold py-2 rounded-lg hover:bg-yellow-600" onclick="validateForm()">Lanjutkan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const rentalForm = document.getElementById('rentalForm');
+        const startDateInput = document.getElementById('startDate');
+        const endDateInput = document.getElementById('endDate');
+        const totalPriceElement = document.getElementById('totalPrice');
+        const otherAddressInput = document.getElementById('otherAddress');
+
+        const pricePerDay = 30493000; // Rental price per day in Rp
+
+        function calculateTotalPrice() {
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+            if (startDate && endDate && endDate >= startDate) {
+                const timeDiff = endDate - startDate;
+                const daysDiff = timeDiff / (1000 * 3600 * 24) + 1; // including the start day
+                const totalPrice = daysDiff * pricePerDay;
+                totalPriceElement.textContent = `Rp.${totalPrice.toLocaleString()}`;
+            } else {
+                totalPriceElement.textContent = 'Rp.0';
+            }
+        }
+
+        function handleLocationChange(select) {
+            if (select.value === 'Lainnya') {
+                otherAddressInput.disabled = false;
+            } else {
+                otherAddressInput.disabled = true;
+            }
+        }
+
+        function validateForm() {
+            const nameInput = document.getElementById('name');
+            const ktpInput = document.getElementById('ktp');
+            const addressInput = document.getElementById('address');
+            const startDateInput = document.getElementById('startDate');
+            const endDateInput = document.getElementById('endDate');
+
+            if (!nameInput.value || !ktpInput.value || !startDateInput.value || !endDateInput.value) {
+                alert("Tolong isi informasi ini");
+                return;
+            }
+
+            if (addressInput.value === 'Lainnya' && !otherAddressInput.value) {
+                alert("Silakan masukkan lokasi pengiriman lainnya");
+                return;
+            }
+
+            calculateTotalPrice();
+            localStorage.setItem('selectedLocation', addressInput.value === 'Lainnya' ? otherAddressInput.value : addressInput.value);
+            window.location.href = "/success.html";
+        }
+
+        startDateInput.addEventListener('change', calculateTotalPrice);
+        endDateInput.addEventListener('change', calculateTotalPrice);
+    </script>
+</body>
+</html>

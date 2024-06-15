@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RentFR</title>
+    <link rel="stylesheet" href="/assets/css/output.css">
+</head>
+<body class="bg-gray-100">
+    <div class="max-w-7xl mx-auto p-4">
+    <div class="flex items-center space-x-4 text-gray-600">
+    <span>RentFR</span>
+    <span>&gt;</span>
+    <a href="/index.html" class="hover:underline">Home</a>
+    <span>&gt;</span>
+    <a href="/categories.html" class="hover:underline">See all</a>
+    <span>&gt;</span>
+    <span>Ferrari LaFerrari</span>
+</div>
+
+        <div class="mt-6 flex flex-col lg:flex-row lg:space-x-6">
+            <div class="lg:w-1/2">
+                <img id="mainImage" src="/assets/image/Laferrari/laferrari-1.png" alt="Ferrari LaFerrari" class="rounded-lg w-full object-cover">
+                <div class="flex space-x-2 mt-2">
+                    <img src="/assets/image/Laferrari/laferrari-2.png" alt="Ferrari LaFerrari" class="w-[189px] h-[119px] rounded-lg cursor-pointer" onclick="document.getElementById('mainImage').src='/assets/image/Laferrari/laferrari-1.png'; document.getElementById('mainImage').alt='Ferrari LaFerrari';">
+                    <img src="/assets/image/Laferrari/laferrari-3.png" alt="Ferrari LaFerrari" class="w-[189px] h-[119px] rounded-lg cursor-pointer" onclick="document.getElementById('mainImage').src='/assets/image/LaFerrari/laferrari-3.png'; document.getElementById('mainImage').alt='Ferrari LaFerrari';">
+                </div>
+            </div>
+            <div class="lg:w-1/2">
+                <h1 class="text-3xl font-semibold">Ferrari LaFerrari</h1>
+                <div class="flex items-center mt-2">
+                    <div class="flex text-yellow-500">
+                        &#9733;&#9733;&#9733;&#9733;&#9733;
+                    </div>
+                    <span class="ml-2 text-gray-600">4.9 | 520x Disewa</span>
+                </div>
+                <div class="mt-4">
+                    <label class="block text-gray-700">Pilih warna:</label>
+                    <div class="flex space-x-2 mt-2">
+                        <div onclick="selectColor('black')" class="w-6 h-6 bg-black rounded-full border cursor-pointer"></div>
+                        <div onclick="selectColor('white')" class="w-6 h-6 bg-white rounded-full border cursor-pointer"></div>
+                        <div onclick="selectColor('red')" class="w-6 h-6 bg-red-600 rounded-full border cursor-pointer"></div>
+                        <div onclick="selectColor('yellow')" class="w-6 h-6 bg-yellow-500 rounded-full border cursor-pointer"></div>
+                        <div onclick="selectColor('blue')" class="w-6 h-6 bg-blue-500 rounded-full border cursor-pointer"></div>
+                        <div onclick="selectColor('gray')" class="w-6 h-6 bg-gray-400 rounded-full border cursor-pointer"></div>
+                        <div onclick="selectColor('cyan')" class="w-6 h-6 bg-cyan-300 rounded-full border cursor-pointer"></div>
+                    </div>
+                </div>
+                <div class="mt-6 text-2xl font-bold text-gray-900">
+                    Harga Rental: <span class="text-black">Rp.30.493.000/Hari</span>
+                </div>
+                <a href="payment-laferrari.html"><button class="mt-4 px-4 py-2 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600">Sewa sekarang</button></a>
+            </div>
+        </div>
+
+        <div class="mt-12">
+            <nav class="flex justify-center space-x-8 border-b">
+                <a href="#" class="py-2 text-black border-b-2 border-yellow-500">Detail mobil</a>
+                <a href="#feature-tag" class="py-2 text-gray-600 hover:text-yellow-500 md:text-center">Fitur dan spesifikasi</a>
+                <a href="#syarat" class="py-2 text-gray-600 hover:text-yellow-500 md:text-center-center">Syarat penyewaan</a>
+            </nav>
+            <div class="mt-6">
+                <h2 class="text-3xl flex justify-center font-semibold text-gray-900">Detail mobil</h2>
+                <div class="mt-4 bg-white p-4 rounded-lg shadow">
+                    <table class="w-full text-left text-gray-700">
+                        <tbody>
+                            <tr>
+                                <td class="py-2">Jenis bahan bakar</td>
+                                <td class="py-2">Bensin</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2">Kursi</td>
+                                <td class="py-2">2</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2">Jenis pendaftaran</td>
+                                <td class="py-2">Pribadi</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2">Kunci cadangan</td>
+                                <td class="py-2">Ya</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2">Kecepatan</td>
+                                <td class="py-2">350km/h</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2">Warna mobil</td>
+                                <td class="py-2">Merah</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2">Tahun</td>
+                                <td class="py-2">2014</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2">Mesin</td>
+                                <td class="py-2">V12</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2">Ketersediaan</td>
+                                <td class="py-2">Ya</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2">Peringkat mobil</td>
+                                <td class="py-2">&#9733; 5.0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 flex flex-col items-center justify-center w-full" id="feature-tag">
+            <h2 class="text-2xl font-semibold mt-10 mb-10 text-center text-gray-900 bg-yellow-300 rounded-2xl px-14 py-2">Fitur</h2>
+            <div class="mt-4 flex justify-center space-x-6 mr-8">
+                <div class="flex flex-col items-center mx-4">
+                    <img src="/assets/image/Laferrari/Rem.png" alt="Rem parkir" class="w-[55px]">
+                    <span class="mt-2 text-gray-700 text-center">Rem parkir</span>
+                </div>
+                <div class="flex flex-col items-center mx-4">
+                    <img src="/assets/image/Laferrari/ABS.png" alt="Automatic Brake System" class="w-[55px]">
+                    <span class="mt-2 text-gray-700 text-center">Automatic Brake System</span>
+                </div>
+                <div class="flex flex-col items-center mx-4">
+                    <img src="/assets/image/Laferrari/Airbags.png" alt="Airbags" class="w-[55px]">
+                    <span class="mt-2 text-gray-700 text-center">Airbags</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 flex flex-col items-center" id="syarat">
+            <div>
+                <h2 class="text-[40px] font-bold text-gray-900 text-center mt-[90px] mb-[45px]">Syarat penyewaan</h2>
+                <div class="mt-4 flex justify-center space-x-6">
+                    <div class="flex flex-col items-center">
+                        <img src="/assets/image/Laferrari/KTP.png" alt="KTP Asli dan SIM A" class="w-333 h-84">
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="/assets/image/Laferrari/STNK.png" alt="STNK" class="w-187 h-84">
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <img src="/assets/image/Laferrari/KK.png" alt="Kartu keluarga (KK)" class="w-312 h-86">
+                </div>
+            </div>
+        </div>
+</body>
+</html>
